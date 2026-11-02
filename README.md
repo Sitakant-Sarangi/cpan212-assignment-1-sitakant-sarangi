@@ -30,4 +30,5 @@ TODO (you): credit Open-Meteo with a link to https://open-meteo.com/.
 
 ## AI use
 
+
 TODO (you): each AI tool you used and what for, or "No AI tools used."

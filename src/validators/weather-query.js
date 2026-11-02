@@ -10,8 +10,19 @@ export function parseCity(value) {
   return value.trim();
 }
 
-// TODO (you): check ?cities= and return an array of trimmed city names. Throw a
-// 400 HttpError with details.cities when it breaks a rule from the assignment page.
 export function parseCities(value) {
-  throw new Error('parseCities is not written yet');
+  if (typeof value !== 'string' || value.trim() === '') {
+    throw new HttpError(400, 'Query parameter "cities" must be a comma-separated list of at least two city names', {
+      cities: value ?? null,
+    });
+  }
+
+  const cities = value.split(',').map((city) => city.trim());
+  if (cities.length < 2 || cities.some((city) => city === '')) {
+    throw new HttpError(400, 'Query parameter "cities" must be a comma-separated list of at least two city names', {
+      cities: value,
+    });
+  }
+
+  return cities;
 }
